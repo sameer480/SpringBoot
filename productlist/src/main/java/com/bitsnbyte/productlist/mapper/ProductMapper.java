@@ -6,7 +6,7 @@ import com.bitsnbyte.productlist.entity.Product;
 
 public class ProductMapper {
     //to product dto
-    public static ProductDTO toproductDTO(Product product){
+    public static ProductDTO toproductDTO(Product product) {
         return new ProductDTO(
                 product.getId(),
                 product.getName(),
@@ -15,6 +15,7 @@ public class ProductMapper {
                 product.getCategory().getId()
         );
     }
+
     //dto to entity
     public static Product toProductEntity(ProductDTO productDTO, Category category) {
         Product product = new Product();

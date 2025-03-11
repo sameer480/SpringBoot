@@ -5,8 +5,8 @@ import com.bitsnbyte.productlist.entity.Category;
 import com.bitsnbyte.productlist.entity.Product;
 
 public class CategoryMapper {
-    public static CategoryDTO tocategoryDTO(Category category){
-        if(category ==null){
+    public static CategoryDTO tocategoryDTO(Category category) {
+        if (category == null) {
             return null;
         }
         CategoryDTO categoryDTO = new CategoryDTO();
@@ -16,6 +16,7 @@ public class CategoryMapper {
         return categoryDTO;
 
     }
+
     public static Category toCategoryEntity(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setName(categoryDTO.getName());

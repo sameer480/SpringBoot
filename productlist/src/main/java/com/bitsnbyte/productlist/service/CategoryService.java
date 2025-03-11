@@ -14,21 +14,25 @@ import java.util.List;
 public class CategoryService {
     //create category
     private CategoryRepository categoryRepository;
-    public CategoryDTO createCategory(CategoryDTO categoryDTO){
+
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         Category category = CategoryMapper.toCategoryEntity(categoryDTO);
-       category= categoryRepository.save(category);
-      return CategoryMapper.tocategoryDTO(category);
+        category = categoryRepository.save(category);
+        return CategoryMapper.tocategoryDTO(category);
     }
+
     //get all category
-        public List<CategoryDTO> getAllCategories(){
-            return categoryRepository.findAll().stream().map(CategoryMapper::tocategoryDTO).toList();
-        }
-        public CategoryDTO getCategoryById(Long id){
-            Category category = categoryRepository.findById(id).orElseThrow(()->new RuntimeException("Category not found"));
-            return CategoryMapper.tocategoryDTO(category);
-        }
+    public List<CategoryDTO> getAllCategories() {
+        return categoryRepository.findAll().stream().map(CategoryMapper::tocategoryDTO).toList();
+    }
+
+    public CategoryDTO getCategoryById(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
+        return CategoryMapper.tocategoryDTO(category);
+    }
+
     //delete category
-    public void deleteCategory(Long id){
+    public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
 

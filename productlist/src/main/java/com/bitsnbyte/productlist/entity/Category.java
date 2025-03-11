@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
 }
