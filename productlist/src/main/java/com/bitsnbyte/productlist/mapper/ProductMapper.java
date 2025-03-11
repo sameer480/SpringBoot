@@ -16,12 +16,13 @@ public class ProductMapper {
         );
     }
     //dto to entity
-    public static  Product toProductEntity(ProductDTO productDTO, Category category){
+    public static Product toProductEntity(ProductDTO productDTO, Category category) {
         Product product = new Product();
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
-        product.setPrice(product.getPrice());
-        product.setCategory(product.getCategory());
+        product.setPrice(productDTO.getPrice());
+        product.setCategory(category);
         return product;
     }
+
 }
