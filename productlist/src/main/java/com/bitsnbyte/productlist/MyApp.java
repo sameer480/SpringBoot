@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 public class MyApp {
     private MyComponent myComponent;
     @Autowired
-//    MyApp(MyComponent myComponent){
-//        this.myComponent=myComponent;
-//    }
+    MyApp(MyComponent myComponent){
+        this.myComponent=myComponent;
+    }
     public void run(){
         myComponent.getMessage();
     }
