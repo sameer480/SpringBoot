@@ -2,6 +2,7 @@ package com.bitsnbyte.productlist.service;
 
 import com.bitsnbyte.productlist.dto.CategoryDTO;
 import com.bitsnbyte.productlist.entity.Category;
+import com.bitsnbyte.productlist.exception.CategoryAlreadyExistsException;
 import com.bitsnbyte.productlist.mapper.CategoryMapper;
 import com.bitsnbyte.productlist.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,9 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+        categoryRepository.findByName(categoryDTO.getName()).ifPresent(category -> {
+            throw new CategoryAlreadyExistsException("Category"+categoryDTO.getName()+"already exists");
+        });
         Category category = CategoryMapper.toCategoryEntity(categoryDTO);
         category = categoryRepository.save(category);
         return CategoryMapper.tocategoryDTO(category);
