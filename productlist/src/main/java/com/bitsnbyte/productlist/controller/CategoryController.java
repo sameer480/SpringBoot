@@ -25,12 +25,10 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<?> createCategory(@RequestBody CategoryDTO categoryDTO) {
-        try{
+
             CategoryDTO savedCategory = categoryService.createCategory(categoryDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
-        }catch (CategoryAlreadyExistsException ex){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
-        }
+
         //return new ResponseEntity<>(categoryService.createCategory(categoryDTO), HttpStatus.CREATED);
     }
 
