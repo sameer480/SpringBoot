@@ -3,6 +3,8 @@ package com.bitsnbyte.productlist.controller;
 import com.bitsnbyte.productlist.dto.CategoryDTO;
 import com.bitsnbyte.productlist.exception.CategoryAlreadyExistsException;
 import com.bitsnbyte.productlist.service.CategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,23 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-
+@Operation(
+        summary = "Get all categories",
+        description = "Get all categories from the database"
+)
+    //get all categories
     @GetMapping
     public List<CategoryDTO> getAllCategories() {
         return categoryService.getAllCategories();
     }
+    @Operation(
+            summary = "Create category",
+            description = "Create category in the database"
+    )
+    @ApiResponse(
+            responseCode = "201",
+            description = "Category created"
+    )
 
     @PostMapping
     public ResponseEntity<?> createCategory(@RequestBody CategoryDTO categoryDTO) {
@@ -31,11 +45,20 @@ public class CategoryController {
 
         //return new ResponseEntity<>(categoryService.createCategory(categoryDTO), HttpStatus.CREATED);
     }
+    @Operation(
+            summary = "Get category by id",
+            description = "Get category by id from the database"
+    )
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
         return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
     }
+@Operation(
+        summary = "Delete category",
+        description = "Delete category by id from the database"
+)
+    //delete category
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {

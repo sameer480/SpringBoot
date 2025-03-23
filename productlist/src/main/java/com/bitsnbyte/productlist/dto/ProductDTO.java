@@ -1,9 +1,13 @@
 package com.bitsnbyte.productlist.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+@Schema(
+        name = "Product",
+        description = "Product Data Transfer Object"
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
